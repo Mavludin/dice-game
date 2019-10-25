@@ -43,15 +43,15 @@ h2 {
     background-color: #efefef;
 }
 
-#player1 img {
+.active img {
     width: 32px;
     position: absolute;
     top: 50%;
-    right: 20%;
+    right: 20px;
     transform: translateY(-50%);
 }
 
-#player1 h2 {
+h2 {
      position: relative;
 }
 
@@ -74,21 +74,21 @@ p {
     box-sizing: border-box;
 }
 
-#dice, #hold {
+#roll-dice, #hold {
     position: absolute;
     left: 50%;
     cursor: pointer;
     font-size: 1.2em;
 }
 
-#dice {
-    bottom: 35%;
-    transform: translate(-50%, -35%);
+#roll-dice {
+    bottom: 90px;
+    transform: translateX(-50%);
 }
 
 #hold {
-    bottom: 30%;
-    transform: translate(-50%, -30%);
+    bottom: 120px;
+    transform: translateX(-50%);
 }
 
 i {
@@ -96,6 +96,13 @@ i {
     color: #ff4c4c;
 }
 
-#dice i, #hold i{
+#roll-dice i, #hold i{
     font-size: 1em;
+}
+
+#diceImg {
+    width: 100px;
+    position: absolute;
+    top: 10%;
+    left: 10%;
 }
