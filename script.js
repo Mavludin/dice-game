@@ -18,47 +18,90 @@ const arrayOfImages = [
 ];
 
 const rollDice = document.getElementById('roll-dice');
-let score = [];
+let dicesArray = [];
+
+let totalScoreOfPlayer1 = 0;
+let totalScoreOfPlayer2 = 0;
+
+let diceImg =  document.getElementById('diceImg');
 
 rollDice.onclick = () => {
-	let diceImg =  document.getElementById('diceImg');
-	// document.getElementById('player2').classList = 'active';
-	// document.querySelectorAll('.active h2')[1].appendChild(dotImage);
-	let randomNumber = Math.floor(Math.random() * 6)+1;
-	diceImg.src = arrayOfImages[randomNumber];
+	let currentScore = document.querySelector('.active > .current > p');
 
-	score.push(randomNumber);
-	console.log(score);
-}
+	let randomNumber = Math.floor(Math.random() * 6)+1;
+	currentScore.innerHTML = randomNumber;
+
+	let randomRotate = [10, 350, 5, 0, 6, 7, 355];
+	let chooseRandomRotate = Math.floor(Math.random() * randomRotate.length)+1;
+
+	diceImg.style.transform = `translate(-50%, -50%) rotate(${randomRotate[chooseRandomRotate-1]}deg)`;
+	diceImg.src = arrayOfImages[randomNumber-1];
+
+	dicesArray.push(randomNumber);
+};
 
 const holdBtn = document.getElementById('hold');
 
+let scoreOfPLayer1 = document.querySelector('#player1 .total-score');
+let scoreOfPLayer2 = document.querySelector('#player2 .total-score');
+let player1Wins = document.querySelector('#player1 .victory');
+let player2Wins = document.querySelector('#player2 .victory');
+
 holdBtn.onclick = () => {
 
-	let scoreHolder = score.reduce((acc,item) => {
+	let scoreHolder = dicesArray.reduce((acc,item) => {
 		return acc+item;
 	}, 0);
 
-	console.log(scoreHolder);
+	let currentScore = document.querySelector('.active > .current > p');
+	currentScore.innerHTML = 0;
 
-	let totalScore =  document.querySelector('.active > .total-score');
+	const player1 = document.querySelector('#player1');
+	const player2 = document.querySelector('#player2');
 
-	let temp = parseInt (totalScore.innerHTML);
-	totalScore.innerHTML = '';
-	totalScore.innerHTML = temp+scoreHolder;
 
+	if (player1.classList.contains('active')) { 
+		totalScoreOfPlayer1 += scoreHolder;
+		let totalScore = document.querySelector('.active > .total-score');
+		totalScore.innerHTML = totalScoreOfPlayer1;
+
+	}
+	if (player2.classList.contains('active')) { 
+		totalScoreOfPlayer2 += scoreHolder;
+		let totalScore = document.querySelector('.active > .total-score');
+		totalScore.innerHTML = totalScoreOfPlayer2;
+	}
 
 	playerOne.classList.toggle('active');
 	playerTwo.classList.toggle('active');
 
+	diceImg.src = "";
+
+	dicesArray = [];
 
 	let activePlayer = document.querySelector('.active h2');
 	activePlayer.appendChild(dotImage);
 
+	if (scoreOfPLayer1.innerHTML.length > 0 && scoreOfPLayer1.innerHTML >= 50) {
+		player1Wins.style.display = 'block';
+	}
+	else if (scoreOfPLayer2.innerHTML.length > 0 && scoreOfPLayer2.innerHTML >= 50) {
+		player2Wins.style.display = 'block';
+	}
 
+};
 
-	// let currentScoreHolder = document.querySelector('.active > .current > p');
-	// currentScoreHolder.innerHTML+=scoreHolder;
+const newGame = document.getElementById('new-game');
 
-	// if (playerOne.classList.match('active')) totalScore.innerHTML = scoreHolder;
+newGame.onclick = () => {
+	dicesArray = [];
+
+	scoreOfPLayer1.innerHTML = 0;
+	scoreOfPLayer2.innerHTML = 0;
+
+	player1Wins.style.display = 'none';
+	player2Wins.style.display = 'none';
+
+	totalScoreOfPlayer1 = 0;
+	totalScoreOfPlayer2 = 0;
 }
