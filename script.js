@@ -31,7 +31,7 @@ rollDice.onclick = () => {
 	let randomNumber = Math.floor(Math.random() * 6)+1;
 	currentScore.innerHTML = randomNumber;
 
-	let randomRotate = [10, 350, 5, 0, 6, 7, 355];
+	let randomRotate = [10, 350, 5, 0, 340, 7, 355];
 	let chooseRandomRotate = Math.floor(Math.random() * randomRotate.length)+1;
 
 	diceImg.style.transform = `translate(-50%, -50%) rotate(${randomRotate[chooseRandomRotate-1]}deg)`;
