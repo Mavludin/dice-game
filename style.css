@@ -6,7 +6,8 @@ html, body {
 }
 
 body {
-    background-color: skyblue;
+    height: 100vh;
+    background: linear-gradient(45deg, black, skyblue);
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -15,6 +16,7 @@ main {
     margin: 10% auto;
     background-color: #ffffff;
     box-sizing: border-box;
+    border-radius: 5px;
 }
 
 h1 {
@@ -30,6 +32,8 @@ h1 {
 #cover {
     position: relative;
     display: flex;
+    box-shadow: 2px 2px 5px #000;
+    border-radius: 5px;
 }
 
 h1, h2 {
@@ -45,6 +49,7 @@ h2 {
     width: 50%;
     padding: 110px 40px 50px 40px;
     position: relative;
+    border-radius: 5px 0 0 5px;
 }
 
 .active {
@@ -90,9 +95,14 @@ p {
     margin: 70px auto 0 auto;
     padding: 10px 0;
     box-sizing: border-box;
+    border-radius: 5px;
 }
 
-#roll-dice, #hold {
+button {
+    border: unset;
+    background-color: unset;
+    font-family: 'Montserrat', sans-serif;
+    outline: unset;
     position: absolute;
     left: 50%;
     cursor: pointer;
