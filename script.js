@@ -29,7 +29,21 @@ rollDice.onclick = () => {
 	let currentScore = document.querySelector('.active > .current > p');
 
 	let randomNumber = Math.floor(Math.random() * 6)+1;
-	currentScore.innerHTML = randomNumber;
+	if (randomNumber === 1) {
+
+		let currentScore = document.querySelector('.active > .current > p');
+		currentScore.innerHTML = 0;
+
+		playerOne.classList.toggle('active');
+		playerTwo.classList.toggle('active');
+
+		diceImg.src = "";
+		dicesArray = [];
+
+		let activePlayer = document.querySelector('.active h2');
+		activePlayer.appendChild(dotImage);
+		return;
+	} else currentScore.innerHTML = randomNumber;
 
 	let randomRotate = [10, 350, 5, 0, 340, 7, 355];
 	let chooseRandomRotate = Math.floor(Math.random() * randomRotate.length)+1;
@@ -104,4 +118,4 @@ newGame.onclick = () => {
 
 	totalScoreOfPlayer1 = 0;
 	totalScoreOfPlayer2 = 0;
-}
+};
